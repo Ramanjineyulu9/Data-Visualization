@@ -1,0 +1,1105 @@
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+df = pd.read_csv("C:/nodejs scripts/Salary.csv")
+df.head()
+Date	ICICI	HDFC
+0	2023-01-01	300	590
+1	2023-01-02	400	300
+2	2023-01-03	500	567
+3	2023-01-04	200	456
+4	2023-01-05	450	234
+print(df.columns)
+Index(['Date', 'ICICI', 'HDFC '], dtype='object')
+X =df.pop('HDFC ')
+df['Date'] = pd.to_datetime(df['Date'])
+df.isna().any()
+print(df.isna())
+     Date  ICICI
+0   False  False
+1   False  False
+2   False  False
+3   False  False
+4   False  False
+5   False  False
+6   False  False
+7   False  False
+8   False  False
+9   False  False
+10  False  False
+11  False  False
+12  False  False
+13  False  False
+14  False  False
+15  False  False
+16  False  False
+17  False  False
+18  False  False
+19  False  False
+20  False  False
+21  False  False
+22  False  False
+23  False  False
+24  False  False
+25  False  False
+26  False  False
+27  False  False
+28  False  False
+29  False  False
+30  False  False
+31  False  False
+32  False  False
+33  False  False
+34  False  False
+35  False  False
+36  False  False
+37  False  False
+38  False  False
+39  False  False
+40  False  False
+41  False  False
+42  False  False
+43  False  False
+44  False  False
+45  False  False
+46  False  False
+47  False  False
+48  False  False
+df_complete = df.dropna()
+df.isna().any()
+Date     False
+ICICI    False
+dtype: bool
+df.plot()
+plt.show()
+
+
+print(df.dtypes)
+Date     datetime64[ns]
+ICICI             int64
+dtype: object
+df.set_index('Date', inplace=True)
+df_subset = df["2023-01":"2023-02"]
+ax = df_subset.plot(figsize=(10,6), fontsize=14, marker="v", color="r", linestyle=":")
+plt.style.use('classic')
+ax.set_xlabel("Time",fontsize=15 ,color="g")
+ax.set_ylabel("Price",fontsize=15,color="g")
+ax.set_title("Data Visualization")
+ax.axvline('2023-01-15',color="r",linestyle="--")
+ax.axhline(250,color="g",linestyle="--")
+ax.axvspan('2020-01-10','2023-01-25',color="black",alpha=0.5)
+ax.axhspan(250,350,color="blue",alpha=0.2)
+plt.show()
+
+
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+df = pd.read_csv("C:/nodejs scripts/Salary.csv")
+df.head()
+Date	ICICI	HDFC
+0	2023-01-01	300	590
+1	2023-01-02	400	300
+2	2023-01-03	500	567
+3	2023-01-04	200	456
+4	2023-01-05	450	234
+df.dtypes
+Date     object
+ICICI     int64
+HDFC      int64
+dtype: object
+df["Date"] = pd.to_datetime(df["Date"])
+df.dtypes
+Date     datetime64[ns]
+ICICI             int64
+HDFC              int64
+dtype: object
+df.set_index("Date",inplace=True)
+df.dtypes
+ICICI    int64
+HDFC     int64
+dtype: object
+df.head()
+ICICI	HDFC
+Date		
+2023-01-01	300	590
+2023-01-02	400	300
+2023-01-03	500	567
+2023-01-04	200	456
+2023-01-05	450	234
+print(df.columns)
+Index(['ICICI', 'HDFC '], dtype='object')
+import matplotlib.pyplot as plt 
+fig, ax=plt.subplots()
+
+ax.plot(df.index,df["ICICI"],marker="v")
+ax.plot(df.index,df['HDFC '], color="r",linestyle="--",marker="x")
+ax.set_xlabel("Time",fontsize=12,color="g")
+ax.set_ylabel("Stock Price",color="r",fontsize=12)
+plt.xticks(rotation=90)
+ax.legend(labels=['ICICI','HDFC'])
+
+plt.show()
+
+
+
+import matplotlib.pyplot as plt 
+fig, ax=plt.subplots()
+
+ax.plot(df.index,df["ICICI"],marker="v")
+ax.set_xlabel("Time",fontsize=12,color="g")
+ax.set_ylabel("Stock Price",color="r",fontsize=12)
+ax.set_ylim(200,900)
+plt.xticks(rotation=90)
+ax.tick_params("y",colors="b")
+ax.legend(labels=['ICICI'])
+
+ax2=ax.twinx()
+
+ax2.plot(df.index,df['HDFC '], color="r",linestyle="--",marker="x")
+ax2.set_xlabel("Time")
+ax2.set_ylabel("Stock Price",color="b",fontsize=12)
+ax2.set_ylim(200,980)
+ax2.tick_params("y",colors="r")
+ax2.legend(labels=['HDFC'])
+plt.show()
+
+
+
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+df = pd.read_csv("C:/nodejs scripts/Salary.csv")
+df.head()
+Date	ICICI	HDFC
+0	2023-01-01	300	590
+1	2023-01-02	400	300
+2	2023-01-03	500	567
+3	2023-01-04	200	456
+4	2023-01-05	450	234
+df.dtypes
+Date     object
+ICICI     int64
+HDFC      int64
+dtype: object
+df["Date"] = pd.to_datetime(df["Date"])
+df.dtypes
+Date     datetime64[ns]
+ICICI             int64
+HDFC              int64
+dtype: object
+df.set_index("Date",inplace=True)
+df.dtypes
+ICICI    int64
+HDFC     int64
+dtype: object
+df.columns
+Index(['ICICI', 'HDFC '], dtype='object')
+import matplotlib.pyplot as plt 
+fig,ax = plt.subplots()
+ax.bar(df.index,df['ICICI'],color="b",yerr=True)
+plt.xticks(rotation=90)
+ax.legend(labels=['ICICI'])
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig,ax = plt.subplots()
+ax.bar(df.index,df['ICICI'],color="b",width=0.3,yerr=True)
+ax.bar(df.index,df['HDFC '],color="r",width=0.3,yerr=True)
+plt.xticks(rotation=90)
+ax.legend(labels=['ICICI','HDFC'])
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig,ax = plt.subplots()
+ax.bar(df.index,df['ICICI'],bottom=df['HDFC '],color="b",width=0.4)
+ax.bar(df.index,df['HDFC '],color="r",width=0.4)
+ax.set_xlabel("Time",color="r")
+ax.set_ylabel("Stock Price",color="b")
+plt.xticks(rotation=90)
+ax.tick_params(color="b")
+ax.legend(labels=['ICICI','HDFC'])
+
+
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig,ax = plt.subplots()
+ax.bar(df.index,df['ICICI'],color="b",width=0.4)
+ax.set_xlabel("Time",color="b")
+ax.set_ylabel("Stock Price",color="r")
+plt.xticks(rotation=90)
+ax.tick_params("y",color="b")
+ax2=ax.twinx()
+ax2.bar(df.index,df['HDFC '],bottom=df['ICICI'],color="r",width=0.4)
+ax2.set_xlabel("Time",color="b")
+ax2.set_ylabel("Stock Price",color="b")
+ax2.tick_params("y",color="r")
+plt.xticks(rotation=90)
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig,ax=plt.subplots()
+
+data = [df["HDFC "],df['ICICI']]
+ax.boxplot(data)
+ax.legend(labels=['ICICI','HDFC'])
+plt.xticks([1,2],['ICICI','HDFC'])
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig,ax=plt.subplots()
+
+data = [df["HDFC "],df['ICICI']]
+ax.violinplot(data)
+ax.legend(labels=['ICICI','HDFC'])
+plt.xticks([1,2],['ICICI','HDFC'])
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig,ax = plt.subplots()
+ax.scatter(df.index,df['ICICI'],color="b")
+ax.scatter(df.index,df['HDFC '],color="r")
+ax.set_xlabel("Time",color="r")
+ax.set_ylabel("Stock Price",color="b")
+plt.xticks(rotation=90)
+ax.tick_params(color="b")
+ax.legend(labels=['ICICI','HDFC'])
+
+
+plt.show()
+
+
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+df = pd.read_csv("C:/nodejs scripts/Salary.csv")
+df.head()
+Date	ICICI	HDFC
+0	2023-01-01	300	590
+1	2023-01-02	400	300
+2	2023-01-03	500	567
+3	2023-01-04	200	456
+4	2023-01-05	450	234
+df["Date"] = pd.to_datetime(df["Date"])
+df.dtypes
+Date     datetime64[ns]
+ICICI             int64
+HDFC              int64
+dtype: object
+df.set_index("Date", inplace=True)
+import matplotlib.pyplot as plt 
+fig, ax=plt.subplots()
+
+ax.hist(df["ICICI"],bins=10)
+ax.set_xlabel("Time")
+ax.set_ylabel("Stock Prices")
+ax.legend(labels=["ICICI"])
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig, ax=plt.subplots()
+
+ax.hist(df["ICICI"],label="Price",histtype="barstacked")
+ax.set_xlabel("Time")
+ax.set_ylabel("Stock Prices")
+ax.legend(labels=["ICICI"])
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig, ax=plt.subplots()
+
+ax.hist(df["ICICI"])
+ax.set_xlabel("Time")
+ax.set_ylabel("Stock Prices")
+ax.legend(labels=["ICICI"])
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig, ax=plt.subplots()
+
+ax.hist(df["ICICI"],label="Price",histtype="step")
+ax.set_xlabel("Time")
+ax.set_ylabel("Stock Prices")
+ax.legend(labels=["ICICI"])
+plt.show()
+
+
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+df = pd.read_csv("C:/nodejs scripts/Salary.csv")
+df.head()
+Date	ICICI	HDFC
+0	2023-01-01	300	590
+1	2023-01-02	400	300
+2	2023-01-03	500	567
+3	2023-01-04	200	456
+4	2023-01-05	450	234
+df.columns
+Index(['Date', 'ICICI', 'HDFC '], dtype='object')
+x = df['ICICI'].to_numpy()
+y = df['HDFC '].to_numpy()
+print(x)
+print(y)
+[300 400 500 200 450 220 340 700 280 350 780 296 320 390 420 590 350 460
+ 540 260 380 470 380 460 380 450 200 890 540 400 684 350 680 480 680 460
+ 530 460 270 548 378 854 589 865 480 659 389 730 688]
+[590 300 567 456 234 867 438 950 389 290 486 345 489 860 765 905 389 345
+ 678 986 345 758 549 659 635 753 894 643 872 385 491 900 629 834 534 856
+ 456 845 654 865 567 345 976 456 324 789 654 784 487]
+import numpy as np
+X,Y = np.meshgrid(x,y)
+Z = np.sqrt(X**2+Y**2)
+import matplotlib.pyplot as plt 
+fig,ax=plt.subplots(1,1)
+
+d = ax.contourf(X,Y,Z)
+fig.colorbar(d)
+ax.set_xlabel("x cm")
+ax.set_ylabel("y cm")
+ax.set_title("Filled Contour Plot")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+fig,ax=plt.subplots()
+
+d = ax.contour(X,Y,Z)
+fig.colorbar(d)
+ax.set_xlabel("x cm")
+ax.set_ylabel("y cm")
+ax.set_title(" Contour Plot")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+x = [5,2,6,4,7]
+y = [10,8,9,3,1]
+fig,ax=plt.subplots()
+ax.plot(x,y,marker="v",linestyle="--",color="r")
+ax.annotate('localmax',xy=(2,5),xytext=(4.5,5),arrowprops=dict(facecolor="black",connectionstyle="arc3,rad=0.3"))
+plt.show()
+
+
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+df = pd.read_csv("C:/nodejs scripts/Salary.csv")
+df.head()
+Date	ICICI	HDFC
+0	2023-01-01	300	590
+1	2023-01-02	400	300
+2	2023-01-03	500	567
+3	2023-01-04	200	456
+4	2023-01-05	450	234
+x = df["ICICI"].to_numpy()
+y = df['HDFC '].to_numpy()
+import matplotlib.pyplot as plt 
+fig,ax=plt.subplots()
+ax.plot(x,y,marker="v",linestyle="--",color="r")
+ax.annotate('localmax',xy=(220,500),xytext=(300,500),arrowprops=dict(facecolor="black",connectionstyle="arc3,rad=0.3"))
+plt.show()
+
+
+import seaborn as sns 
+df = sns.load_dataset("tips")
+df.head()
+total_bill	tip	sex	smoker	day	time	size
+0	16.99	1.01	Female	No	Sun	Dinner	2
+1	10.34	1.66	Male	No	Sun	Dinner	3
+2	21.01	3.50	Male	No	Sun	Dinner	3
+3	23.68	3.31	Male	No	Sun	Dinner	2
+4	24.59	3.61	Female	No	Sun	Dinner	4
+print(sns.get_dataset_names())
+['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic']
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.scatterplot(x="total_bill",y="tip",data=df)
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.scatterplot(x="total_bill",y="tip",data=df,hue="smoker")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.scatterplot(x="total_bill",y="tip",data=df,hue="smoker",hue_order =["No","Yes"])
+plt.show()
+
+
+hue_colors={"Yes":"black","No":"red"}
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+fig,ax=plt.subplots()
+
+sns.scatterplot(x="total_bill",y="tip",data=df,hue="smoker",hue_order =["Yes","No"],palette=hue_colors)
+ax.set_xlabel("Total Bill")
+ax.set_ylabel("Tip")
+plt.show()
+
+
+import  matplotlib.pyplot as plt 
+import seaborn as sns 
+fig, ax=plt.subplots()
+sns.countplot(x="smoker",hue="sex",data=df)
+ax.set_xlabel("Smokers")
+ax.set_ylabel("Count")
+ax.set_title("Count Plot")
+plt.show()
+
+
+hue_colors={"Yes":"black","No":"red"}
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.relplot(x="total_bill",y="tip",data=df,hue="smoker",hue_order =["Yes","No"],palette=hue_colors,kind="scatter")
+plt.xlabel("Total Bill")
+plt.ylabel("Tip")
+plt.title("Relational Plot")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.relplot(x="total_bill",y="tip",data=df,row="smoker",hue_order =["Yes","No"],kind="scatter")
+plt.xlabel("Total Bill")
+plt.ylabel("Tip")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.relplot(x="total_bill",y="tip",data=df,col="smoker",hue_order=["Yes","No"],kind="scatter")
+plt.xlabel("Total Bill")
+plt.ylabel("Tip")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.relplot(x="total_bill",y="tip",data=df,row="time",col="smoker",hue_order =["Yes","No"],kind="scatter")
+plt.xlabel("Total Bill")
+plt.ylabel("Tip")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.relplot(x="total_bill",y="tip",data=df,row="day",col="smoker",hue_order =["Yes","No"],kind="scatter")
+plt.xlabel("Total Bill")
+plt.ylabel("Tip")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.relplot(x="total_bill",y="tip",data=df,col="day",col_wrap=4,hue_order =["Yes","No"],kind="scatter")
+plt.xlabel("Total Bill")
+plt.ylabel("Tip")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.relplot(x="total_bill",y="tip",data=df,hue="size",size="size",hue_order =["Yes","No"],kind="scatter",alpha=1)
+plt.xlabel("Total Bill")
+plt.ylabel("Tip")
+plt.show()
+
+
+import seaborn as sns 
+import pandas as pd  
+
+df = sns.load_dataset("tips")
+df.head()
+total_bill	tip	sex	smoker	day	time	size
+0	16.99	1.01	Female	No	Sun	Dinner	2
+1	10.34	1.66	Male	No	Sun	Dinner	3
+2	21.01	3.50	Male	No	Sun	Dinner	3
+3	23.68	3.31	Male	No	Sun	Dinner	2
+4	24.59	3.61	Female	No	Sun	Dinner	4
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.countplot(x="smoker",data=df)
+plt.show()
+
+import matplotlib.pyplot as plt 
+import seaborn as sns
+sns.catplot(x="smoker",kind="count",data=df)
+plt.show()
+
+
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.set_palette("PRGn")
+sns.catplot(x="day",y="total_bill",data=df,kind="bar")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+
+sns.catplot(x="day",y="total_bill",data=df,kind="bar",errorbar=None)
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.set_palette("RdBu")
+sns.catplot(x="total_bill",y="day",data=df,kind="bar")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+sns.set_palette("PRGn")
+sns.catplot(x="time",y="total_bill",data=df,kind="box")
+plt.show()
+
+sns.catplot(x="time",y="total_bill",data=df,kind="box",order=["Dinner","Lunch"])
+plt.show()
+
+
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+
+sns.catplot(x="smoker",y="total_bill",data=df,kind="point")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns  
+
+sns.catplot(x="day",y="total_bill",data=df,kind="point")
+plt.show()
+sns.catplot(x="day",y="total_bill",data=df,kind="point",linestyle='none')
+plt.show()
+
+
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns  
+from numpy import median 
+
+sns.catplot(x="day",y="total_bill",data=df,kind="point")
+plt.show()
+sns.catplot(x="day",y="total_bill",data=df,kind="point",estimator=median)
+plt.show()
+
+
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns  
+sns.set_style("whitegrid")
+sns.catplot(x="day",y="total_bill",data=df,kind="point")
+plt.show()
+
+
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+sns.set_context("paper")
+sns.catplot(x="smoker",y="total_bill",data=df,kind="point")
+plt.show()
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+sns.set_context("notebook")
+sns.catplot(x="smoker",y="total_bill",data=df,kind="point")
+plt.show()
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+sns.set_context("talk")
+sns.catplot(x="smoker",y="total_bill",data=df,kind="point")
+plt.show()
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+sns.set_context("poster")
+sns.catplot(x="smoker",y="total_bill",data=df,kind="point")
+plt.show()
+
+
+
+
+
+
+
+
+from bokeh.plotting import figure,output_file,show
+p = figure(width=300,height=300)
+p.patch(x=[1,3,2,4], y=[2,3,5,7],color="green")
+output_file("patch.html")
+show(p)
+from bokeh.plotting import figure,output_file,show
+xs = [[1,3,5],[2,4,7],[6,9,5,3]]
+ys = [[2,5,3],[8,6,4],[8,4,7,6]]
+
+p = figure(width=1000,height=600)
+p.patches(xs,ys,fill_color=["red","green","blue"])
+output_file("patches.html")
+show(p)
+from bokeh.plotting import figure,output_file,show
+x = [6,9,5,3]
+y1 = [8,4,7,6]
+y2 = [3,6,9,1]
+
+p = figure(width=1000,height=600)
+p.varea(x=x,y1=y1,y2=y2)
+output_file("area.html")
+show(p)
+from bokeh.plotting import figure,output_file,show
+x1 = [6,9,5,3]
+x2 = [8,4,7,6]
+y = [3,6,9,1]
+
+p = figure(width=1000,height=600)
+p.harea(x1=x1,x2=x2,y=y)
+show(p)
+from bokeh.plotting import figure,show
+plot = figure(width=500,height=500)
+plot.circle_cross(x=[1,2,3],y=[3,8,4],size=20,fill_color="red")
+plot.circle_cross(x=[1,4,3],y=[2,6,9],size=20,fill_color="blue",line_width=2,alpha=0.5)
+plot.circle_x(x=[4,9,7],y=[1,3,8],size=20,fill_color="green",line_width=2,alpha=0.5)
+
+show(plot)
+BokehDeprecationWarning: 'circle_cross() method' was deprecated in Bokeh 3.4.0 and will be removed, use "scatter(marker='circle_cross', ...) instead" instead.
+BokehDeprecationWarning: 'circle_cross() method' was deprecated in Bokeh 3.4.0 and will be removed, use "scatter(marker='circle_cross', ...) instead" instead.
+BokehDeprecationWarning: 'circle_x() method' was deprecated in Bokeh 3.4.0 and will be removed, use "scatter(marker='circle_x', ...) instead" instead.
+from bokeh.plotting import figure,show 
+p = figure(width=400,height=400)
+p.quad(top=[2,4,8],bottom=[3,9,5],right=[2,6,4],left=[1,6,3],color="blue")
+show(p)
+from bokeh.plotting import figure,show 
+from math import pi
+p = figure(width=400,height=400)
+p.rect(x=[1,2,3],y=[1,2,3],width=0.2,height=40,color="blue",angle=pi/3,height_units="screen")
+show(p)
+from bokeh.plotting import figure,show 
+from math import pi
+p = figure(width=400,height=400)
+p.rect(x=[2,4,6],y=[2,4,6],width=0.2,height=40,color="blue",angle=pi/3,height_units="screen")
+show(p)
+from bokeh.plotting import figure,show 
+from math import pi
+p = figure(width=400,height=400)
+p.ellipse(x=[1,2,3],y=[1,2,3],width=0.2,height=40,color="blue",angle=pi/3,height_units="screen")
+show(p)
+from bokeh.plotting import figure,show 
+fig = figure(width = 500 , height = 500)
+fig.rect( x = 10, y = 10 ,width = 100 , height = 50, width_units = 'screen', height_units = 'screen')
+fig.square( x = 2 ,y = 3 ,size = 80 , color = 'red')
+fig.ellipse( x = 7, y = 6 ,width = 30 , height = 10, fill_color = None, line_width = 2)
+
+show(fig)
+BokehDeprecationWarning: 'square() method' was deprecated in Bokeh 3.4.0 and will be removed, use "scatter(marker='square', ...) instead" instead.
+from bokeh.plotting import figure,show 
+p =figure(width=500,height=500)
+p.arc(x=[1,2,3],y=[1,2,3],radius=0.1,start_angle=0.4,end_angle=0.2,color="navy")
+show(p)
+from bokeh.plotting import figure,show 
+p =figure(width=500,height=500)
+p.arc(x=[1,4,3],y=[1,2,3],radius=0.1,start_angle=0.4,end_angle=0.2,color="navy")
+show(p)
+from bokeh.plotting import figure,show 
+p =figure(width=500,height=500)
+p.wedge(x=[1,2,3],y=[1,2,3],radius=0.1,start_angle=0.4,end_angle=0.2,color="blue")
+show(p)
+from bokeh.plotting import figure,show 
+p =figure(width=500,height=500)
+p.wedge(x=[1,2,3],y=[1,2,3],radius=0.1,start_angle=0.4,end_angle=0.2,color="blue",direction="clock")
+show(p)
+from bokeh.plotting import figure,show 
+p =figure(width=500,height=500)
+p.annular_wedge(x=[1,2,3],y=[1,2,3],inner_radius=0.1,outer_radius=0.25,start_angle=0.4,end_angle=0.2,color="skyblue",alpha=0.6)
+show(p)
+from bokeh.plotting import figure,show 
+p =figure(width=500,height=500)
+p.annulus(x=[1,2,3],y=[1,2,3],inner_radius=0.1,outer_radius=0.25,color="skyblue",alpha=0.6)
+show(p)
+x = 2
+y = 4
+
+xp02 = x+0.4
+xp01 = x+0.1
+xm01 = x-0.1
+yp01 = y+0.2
+ym01 = y-0.2
+from bokeh.plotting import figure,show 
+fig=figure(width=500,height=500)
+fig.bezier(x0=x,y0=y,x1=xp02,y1=y,cx0=xp01,cy0=yp01,cx1=xm01,cy1=ym01,line_color="red",line_width=2.5)
+show(fig)
+x = 2
+y = 4
+
+xp02 = x+0.4
+xp01 = x+0.1
+xm01 = x-0.1
+yp01 = y+0.2
+ym01 = y-0.2
+from bokeh.plotting import figure,show 
+fig=figure(width=500,height=500)
+fig.quadratic(x0=x,y0=y,x1=xp02,y1=y,cy=yp01,cx=xm01,line_color="blue",line_width=2.5)
+show(fig)
+from bokeh.plotting import figure,show 
+
+langs=['c','html','java','python']
+stu=[24,20,21,15]
+fig = figure(x_range=langs,width=400,height=400)
+fig.vbar(x=langs,top=stu,width=0.4,color="red")
+show(fig)
+from bokeh.plotting import figure,show 
+
+langs=['c','html','java','python']
+stu=[24,20,21,15]
+fig = figure(x_range=langs,width=400,height=400)
+fig.vbar(x=langs,top=stu,width=0.4,color="blue",alpha=0.6)
+show(fig)
+from bokeh.plotting import figure,show 
+
+langs=['c','html','java','python']
+stu=[24,20,21,15]
+cols=['red','blue','green','cyan']
+fig = figure(x_range=langs,width=400,height=400)
+fig.vbar(x=langs,top=stu,width=0.4,color=cols)
+show(fig)
+from bokeh.plotting import figure, show
+
+products = ['computer', 'mobile', 'printer']
+months = ['Jan', 'Feb', 'Mar']
+sales = {'products':products,'Jan': [10,40,5],'Feb': [8,45,10],'Mar':[25,60,22]}
+cols = ['red', 'green', 'blue']
+fig = figure(x_range = products, width = 400, height = 400)
+fig.vbar_stack(months, x = 'products', source = sales, color = cols, width = 0.5)
+show(fig)
+from bokeh.plotting import figure, show 
+from bokeh.transform import dodge
+products = ['computer', 'mobile', 'printer']
+months = ['Jan', 'Feb', 'Mar']
+sales = {'products':products,'Jan': [10,40,5],'Feb': [8,45,10],'Mar': [25,60,22]}
+fig = figure(x_range = products, width = 400,height = 400)
+fig.vbar(x = dodge('products', -0.25, range = fig.x_range), top = 'Jan', width = 0.3,source = sales, color = "red")
+fig.vbar(x = dodge('products', 0.0, range = fig.x_range), top = 'Feb', width = 0.3, source = sales, color = "green")
+fig.vbar(x = dodge('products', 0.25, range = fig.x_range), top = 'Mar', width = 0.3,source = sales, color = "blue")
+show(fig)
+from numpy import pi,arange,sin,linspace
+x = arange(-3*pi,2*pi,0.1)
+y = sin(x)
+y2 = linspace(0,100,len(y))
+
+from bokeh.plotting import figure,show
+from bokeh.models import LinearAxis,Range1d
+
+fig = figure(title="Twin",y_range=(-1.1,1.1))
+fig.line(x,y,color="red")
+
+fig.extra_y_ranges={"y2":Range1d(start=0,end=100)}
+fig.add_layout(LinearAxis(y_range_name="y2"),'right')
+fig.line(x,y2,color="blue",y_range_name="y2")
+
+show(fig)
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+df = pd.read_csv("C:/nodejs scripts/Salary.csv")
+df.head()
+Date	ICICI	HDFC
+0	2023-01-01	300	590
+1	2023-01-02	400	300
+2	2023-01-03	500	567
+3	2023-01-04	200	456
+4	2023-01-05	450	234
+df.dtypes
+Date     object
+ICICI     int64
+HDFC      int64
+dtype: object
+df['Date'] = pd.to_datetime(df['Date'])
+df.dtypes
+Date     datetime64[ns]
+ICICI             int64
+HDFC              int64
+dtype: object
+df.set_index('Date',inplace=True)
+from bokeh.plotting import figure,show
+
+fig =figure(title="Datetime",width=400,height=400)
+fig.line(df.index,df['ICICI'],color="red",alpha=0.6)
+
+show(fig)
+from bokeh.plotting import figure,show
+from bokeh.models import LinearAxis,Range1d
+
+fig =figure(title="Datetime",width=800,height=400)
+
+fig.extra_y_ranges = {"y2":Range1d(start=0,end=900)}
+fig.add_layout(LinearAxis(y_range_name="y2"),'right')
+
+fig.line(df.index,df['ICICI'],color="red",alpha=0.6)
+fig.line(df.index,df['HDFC '],color="navy",alpha=0.6)
+
+show(fig)
+from bokeh.plotting import figure,show 
+import numpy as np 
+import math 
+
+x = np.arange(0,math.pi*2,0.05)
+y=np.sin(x)
+
+fig = figure(title="Sin Plot",x_axis_label="Angle",y_axis_label="Sin")
+fig.line(x,y,legend_label="numpy")
+
+show(fig)
+from bokeh.plotting import figure,show 
+import numpy as np 
+import math 
+
+x = np.arange(0,math.pi*2,0.05)
+y=np.sin(x)
+
+fig = figure(title="Sin Plot",x_axis_label="Angle",y_axis_label="Sin")
+fig.line(x,y,legend_label="numpy")
+fig.legend.location='bottom_left'
+fig.legend.title = 'Numpy Plot'
+fig.legend.title_text_font='Arial'
+fig.legend.title_text_font_size='20pt'
+
+
+
+show(fig)
+from bokeh.plotting import figure,show 
+import numpy as np 
+import math 
+
+x = np.arange(0,math.pi*2,0.05)
+y=np.sin(x)
+
+fig = figure(x_axis_label="Angle",y_axis_label="Sin")
+fig.line(x,y,legend_label="numpy")
+fig.legend.location='bottom_left'
+fig.legend.title = 'Numpy Plot'
+fig.legend.title_text_font='Arial'
+fig.legend.title_text_font_size='20pt'
+fig.title.text="Sine Wave"
+fig.title.align="center"
+show(fig)
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+df = pd.read_csv("C:/nodejs scripts/Salary.csv")
+df.head()
+Date	ICICI	HDFC
+0	2023-01-01	300	590
+1	2023-01-02	400	300
+2	2023-01-03	500	567
+3	2023-01-04	200	456
+4	2023-01-05	450	234
+from bokeh.plotting import figure,show 
+p =figure()
+x=df['ICICI']
+y=df['HDFC ']
+p.line(x,y,)
+p.circle(x,y,size=10)
+show(p)
+BokehDeprecationWarning: 'circle() method with size value' was deprecated in Bokeh 3.4.0 and will be removed, use 'scatter(size=...) instead' instead.
+from bokeh.plotting import figure,show 
+p =figure()
+x=df['ICICI']
+y=df['HDFC ']
+p.line(x,y,)
+p.circle(x,y,size=10,color="red")
+show(p)
+BokehDeprecationWarning: 'circle() method with size value' was deprecated in Bokeh 3.4.0 and will be removed, use 'scatter(size=...) instead' instead.
+from bokeh.plotting import figure,show 
+p =figure()
+x=df['ICICI']
+y=df['HDFC ']
+p.line(x,y)
+p.circle(x,y,size=10,color="red")
+p.square(x,y,color="yellow")
+show(p)
+BokehDeprecationWarning: 'circle() method with size value' was deprecated in Bokeh 3.4.0 and will be removed, use 'scatter(size=...) instead' instead.
+BokehDeprecationWarning: 'square() method' was deprecated in Bokeh 3.4.0 and will be removed, use "scatter(marker='square', ...) instead" instead.
+from bokeh.plotting import figure,show 
+
+p =figure(width=400,height=400)
+x=df['ICICI']
+y=df['HDFC ']
+p.line(x,y)
+
+show(p)
+from bokeh.plotting import figure,show 
+
+p =figure(width=400,height=400,y_axis_type='log')
+x=df['ICICI']
+y=df['HDFC ']
+p.line(x,y)
+
+show(p)
+from bokeh.plotting import figure,show 
+
+p =figure(width=400,height=400)
+x=[0.1,0.5,1.0,1.5,2.0,2.5,3.0]
+y=[10**i for i in x]
+p.line(x,y)
+
+show(p)
+from bokeh.plotting import figure,show 
+
+p =figure(width=400,height=400,y_axis_type="log")
+x=[0.1,0.5,1.0,1.5,2.0,2.5,3.0]
+y=[10**i for i in x]
+p.line(x,y)
+
+show(p)
+from bokeh.plotting import figure,show 
+from bokeh.layouts import column 
+import numpy as np 
+import math 
+
+x = np.arange(0,math.pi*2,0.05)
+y1 =np.sin(x)
+y2 = np.cos(x)
+
+fig1 = figure(width=600,height=300)
+fig1.line(x,y1,line_width=2,line_color="blue")
+
+fig2 = figure(width=600,height=300)
+fig2.line(x,y2,line_width=2,line_color="red")
+
+c= column(children=[fig1,fig2],sizing_mode="stretch_both")
+
+show(c)
+from bokeh.plotting import figure,show 
+from bokeh.layouts import row
+import numpy as np 
+import math 
+
+x = np.arange(0,math.pi*2,0.05)
+y1 =np.sin(x)
+y2 = np.cos(x)
+
+fig1 = figure(width=600,height=300)
+fig1.line(x,y1,line_width=2,line_color="blue")
+
+fig2 = figure(width=600,height=300)
+fig2.line(x,y2,line_width=2,line_color="red")
+
+c= row(children=[fig1,fig2],sizing_mode="stretch_both")
+
+show(c)
+from bokeh.plotting import figure,show 
+from bokeh.layouts import gridplot
+import numpy as np 
+import math 
+
+x = np.arange(0,math.pi*2,0.05)
+y1 =np.sin(x)
+y2 = np.cos(x)
+
+fig1 = figure(width=400,height=300)
+fig1.line(x,y1,line_width=2,line_color="blue")
+
+fig2 = figure(width=400,height=300)
+fig2.line(x,y2,line_width=2,line_color="red")
+
+c= gridplot(children=[[fig1,fig2]],sizing_mode="stretch_both")
+
+show(c)
+from bokeh.plotting import figure, show 
+
+p = figure(width=500,height=500,toolbar_location="below",toolbar_sticky=False)
+p.circle([1,2,3,4,5],[2,4,6,9,5],size=10)
+
+show(p)
+BokehDeprecationWarning: 'circle() method with size value' was deprecated in Bokeh 3.4.0 and will be removed, use 'scatter(size=...) instead' instead.
+from bokeh.plotting import figure, show 
+from bokeh.models import LassoSelectTool
+p.add_tools(LassoSelectTool())
+
+p = figure(width=500,height=500,toolbar_location="below",toolbar_sticky=False,tools="lasso_select")
+p.circle([1,2,3,4,5],[2,4,6,9,5],size=10)
+
+show(p)
+BokehDeprecationWarning: 'circle() method with size value' was deprecated in Bokeh 3.4.0 and will be removed, use 'scatter(size=...) instead' instead.
+import numpy as np
+import math 
+
+from bokeh.plotting import figure,show 
+
+x=np.arange(0,math.pi*4,0.5)
+y=np.sin(x)
+
+p =figure()
+
+p.circle(x,y,legend_label="sin(x)")
+p.line(x,y,legend_label="sin(x)")
+
+p.line(x,2*y,legend_label="2*sin(x)",line_dash=[4,4],line_color="orange",line_width=2)
+
+p.square(x,3*y,legend_label="3*sin(x)",line_color="green",line_width=2,fill_color=None)
+p.line(x,3*y,legend_label="3*sin(x)",line_color="green")
+
+p.legend.location="bottom_left"
+
+show(p)
+
+
+BokehDeprecationWarning: 'square() method' was deprecated in Bokeh 3.4.0 and will be removed, use "scatter(marker='square', ...) instead" instead.
+import numpy as np
+import math 
+
+from bokeh.plotting import figure,show 
+from bokeh.models import Legend
+
+x=np.arange(0,math.pi*4,0.5)
+y=np.sin(x)
+
+p =figure(toolbar_location="above")
+
+r1 = p.circle(x,y)
+r2 = p.line(x,y)
+
+r3 = p.line(x,2*y,line_dash=[4,4],line_color="orange",line_width=2)
+
+r4 = p.square(x,3*y,line_color="green",line_width=2,fill_color=None)
+r5 = p.line(x,3*y,line_color="green")
+
+legend = Legend(items=[
+    ("sinx",[r1,r2]),
+    ("2*sinx",[r3]),
+    ("3*sinx",[r4,r5]),
+],location="center")
+
+p.add_layout(legend,'right')
+
+show(p)
